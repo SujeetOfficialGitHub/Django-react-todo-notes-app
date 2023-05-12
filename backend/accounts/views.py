@@ -11,7 +11,9 @@ from .serializer import (
     UserRegisterSerializer,
     UserLoginSerializer,
     UserProfileSerializer, 
-    UserChangePasswordSerializer
+    UserChangePasswordSerializer,
+    SendPasswordResetEmailSerializer,
+    UserPasswordResetSerializer
 )
 from .models import User
 
@@ -67,4 +69,20 @@ class UserChangePasswordView(APIView):
     def post(self, request, format=None):
         serialize = UserChangePasswordSerializer(data=request.data, context={'user': request.user})
         serialize.is_valid(raise_exception=True)
-        return Response({'message': 'Password Changed Successfully'})
+        return Response({'message': 'Password Changed Successfully'}, status=status.HTTP_200_OK)
+    
+class SendPasswordResetEmailView(APIView):
+    renderer_classes = [CustomRenderer]
+    def post(self, request, format=None):
+        serialize = SendPasswordResetEmailSerializer(data= request.data)
+        serialize.is_valid(raise_exception=True)
+        return Response({'message': 'Password reset link send, please check your email'}, status=status.HTTP_200_OK)
+        
+        
+class UserPasswordResetView(APIView):
+    renderer_classes = [CustomRenderer]
+    def post(self, request, uid, token, format=None):
+        serializer = UserPasswordResetSerializer(data=request.data, context={'uid': uid, 'token':token})
+        serializer.is_valid(raise_exception=True)
+        return Response({'message':'Password reset successfully'}, status=status.HTTP_200_OK)
+             
