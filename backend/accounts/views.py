@@ -10,7 +10,8 @@ from api.renderer import CustomRenderer
 from .serializer import (
     UserRegisterSerializer,
     UserLoginSerializer,
-    UserProfileSerializer
+    UserProfileSerializer, 
+    UserChangePasswordSerializer
 )
 from .models import User
 
@@ -60,3 +61,10 @@ class UserProfileView(APIView):
             print(e)
             return Response({'message': 'Request failed'}, status=status.HTTP_400_BAD_REQUEST)
             
+class UserChangePasswordView(APIView):
+    renderer_classes = [CustomRenderer]
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        serialize = UserChangePasswordSerializer(data=request.data, context={'user': request.user})
+        serialize.is_valid(raise_exception=True)
+        return Response({'message': 'Password Changed Successfully'})
