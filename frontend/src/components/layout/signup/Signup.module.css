@@ -1,0 +1,31 @@
+.signup{
+    width: 35rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+}
+.signup-form-heading{
+    text-align: center;
+    font-size: 2.5rem;
+}
+.signup-btn{
+    width: 100%;
+    font-weight: bold;
+    margin: 1rem 0rem;
+}
+.close-signup-form{
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 2.5rem;
+    color: red;
+    cursor: pointer;
+}
+.login-link{
+    font-size: 1.7rem;
+
+}
+.accept-terms label{
+    font-size: 1.7rem;
+    margin-left: .5rem;
+
+}

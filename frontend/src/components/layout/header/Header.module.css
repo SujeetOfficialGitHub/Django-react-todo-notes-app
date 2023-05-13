@@ -1,0 +1,123 @@
+.header{
+    display: flex;
+    background: red;
+    height: 5rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 0rem 3%;
+    
+}
+.logo{
+    font-size: 2.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: .5rem;
+}
+
+.search-form input{
+    font-size: 1.7rem;
+    border: none;
+    outline: none;
+    border-radius: 1.5rem;
+    width: 40rem;
+    padding: 0rem 1rem;
+    height: 3rem;
+    
+}
+.nav{
+    display: flex;
+    align-items: center;
+}
+.nav a, .nav button{
+    font-size: 1.7rem;
+    margin-right: 1.5rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+
+.nav a:hover,
+.nav a:focus,
+.nav button:focus,
+.nav button:hover{
+    background: white;
+    color: red;
+}
+.nav button{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.open-menu, .close-menu{
+    color: white;
+    font-size: 2.4rem;
+    display: flex;
+    cursor: pointer;
+    display: none;
+}
+
+
+@media (max-width:1200px){
+    .search-form input{
+        width: 30rem;   
+    }
+}
+
+@media (max-width:992px){
+    html{
+        font-size: 55%;
+    }
+    .nav{
+        position: absolute;
+        top: 100%; right: -100%;
+        background: red;
+        display: block;
+        width: 30rem;
+        height: 100vh;
+        padding: 2rem;
+    }
+    .nav a, .nav button{
+        display: flex;
+        flex-direction: column;
+        display: block;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    .open-menu, .close-menu{
+        display: block;
+    }
+    .nav-toggle{
+        right: 0%;
+    }   
+}
+@media (max-width:768px){
+    html{
+        font-size: 50%;
+    } 
+}
+@media (max-width:576px){
+    html{
+        font-size: 50%;
+    }
+    .logo{
+        font-size: 2rem;
+    }
+    .search-form{
+        padding: 0rem 1rem;
+    }
+    .search-form input{
+        width: 100%;   
+    }
+    .nav{
+        width: 100%;
+    }
+    .open-menu, .close-menu{
+        font-size: 3rem;
+    }
+}

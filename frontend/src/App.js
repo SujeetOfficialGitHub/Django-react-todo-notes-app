@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/layout/header/Header';
+import Routers from './router/Routers';
+import Login from './components/layout/login/Login';
+import Signup from './components/layout/signup/Signup';
+import { useState} from 'react';
 
 function App() {
+  const [openLoginForm, setOpenLoginForm] = useState(false)
+  const [openSignupForm, setOpenSignupForm] = useState(false)
+  const openLoginFormHandler = () => {
+    setOpenLoginForm(true)
+  }
+  const closeLoginFormHandler = () => {
+    setOpenLoginForm(false)
+  }
+  const openSignupFormHandler = () => {
+    setOpenSignupForm(true)
+  }
+  const closeSignupFormHandler = () => {
+    setOpenSignupForm(false)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {openLoginForm && <Login closeLoginFormHandler={closeLoginFormHandler}/>}
+      {openSignupForm && <Signup closeSignupFormHandler={closeSignupFormHandler} />}
+      <Header 
+        openLoginFormHandler={openLoginFormHandler}
+        openSignupFormHandler={openSignupFormHandler}
+      />
+      <Routers/>
+    </>
   );
 }
 
