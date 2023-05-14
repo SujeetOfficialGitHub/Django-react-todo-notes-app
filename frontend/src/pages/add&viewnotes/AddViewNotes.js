@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import {Form} from 'react-bootstrap';
 
 import ButtonBox from '../../components/ui/buttonBox/ButtonBox';
@@ -7,7 +7,7 @@ import classes from './AddViewNotes.module.css'
 import ContainerBox from '../../components/ui/ContainerBox'
 import TodoNotes from '../../components/todonotes/TodoNotes';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodoNotes } from '../../app/features/todoNotesSlice';
+import { addTodoNotes, updateTodoNote } from '../../app/features/todoNotesSlice';
 
 // Input type constants
 const ENTERED_TITLE = 'ENTERED_TITLE'
@@ -32,6 +32,7 @@ const notesReducer = (state, action) => {
     }
 }
 const AddViewNotes = () => {
+    const [editId, setEditid] = useState(); 
     const [notesState, notesDispatch] = useReducer(notesReducer, notesInitialState, )
 
     const token = useSelector(state => state.auth.token)
@@ -40,7 +41,21 @@ const AddViewNotes = () => {
 
     const addNoteHandler = (e) => {
         e.preventDefault()
-        dispatch(addTodoNotes({token, enteredData:notesState}))
+        if (!editId){
+            dispatch(addTodoNotes({token, enteredData:notesState}))
+        }else{
+            dispatch(updateTodoNote({token, editId, enteredData:notesState }))
+        }
+        notesDispatch({'type': ENTERED_TITLE, title: ''})
+        notesDispatch({'type': ENTERED_CATEGORY, "category": ''})
+        notesDispatch({'type': ENTERED_DESCRIPTION, "description": ''})
+    }
+    const populateDataToForm = (item) => {
+        setEditid(item.slug)
+        notesDispatch({'type': ENTERED_TITLE, title: item.title})
+        notesDispatch({'type': ENTERED_CATEGORY, "category": item.category_name})
+        notesDispatch({'type': ENTERED_DESCRIPTION, "description": item.description})
+        
     }
   return (
     <ContainerBox className={classes.container}>
@@ -70,17 +85,17 @@ const AddViewNotes = () => {
                     style={{ height: '100px' }} 
                     value={notesState.description}
                     onChange={(e) => notesDispatch({'type': ENTERED_DESCRIPTION, "description": e.target.value})}
-                    placeholder="write description here..." 
+                    placeholder="Write description here..." 
                     required
                 />
             </Form.Group>
 
             <ButtonBox variant="secondary" type="submit" className={loading ? 'disabled': ''}>
-                Add Note
+                {!editId ? "Add Note" : "Update Note"}
             </ButtonBox>
         </Form>
         {/* Show todoNotes  */}
-        <TodoNotes />
+        <TodoNotes onPopulateDataToForm={populateDataToForm} />
     </ContainerBox>
   )
 }

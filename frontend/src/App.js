@@ -4,6 +4,7 @@ import Routers from './router/Routers';
 import Login from './components/layout/login/Login';
 import Signup from './components/layout/signup/Signup';
 import { useState} from 'react';
+import Footer from './components/layout/footer/Footer';
 
 function App() {
   const [openLoginForm, setOpenLoginForm] = useState(false)
@@ -29,6 +30,7 @@ function App() {
         openSignupFormHandler={openSignupFormHandler}
       />
       <Routers/>
+      <Footer />
     </>
   );
 }

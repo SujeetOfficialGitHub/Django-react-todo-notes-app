@@ -66,7 +66,7 @@ const Signup = (props) => {
     }
 
   return (
-    <Modal className={classes.signup}>
+    <Modal className={classes.signup} onClick={props.closeSignupFormHandler}>
         <ImCancelCircle onClick={props.closeSignupFormHandler} className={classes['close-signup-form']} />
         <h3 className={classes['signup-form-heading']}>Please signup here</h3>
         {!message && fieldError && <p className='fieldError'>{fieldError}</p>}

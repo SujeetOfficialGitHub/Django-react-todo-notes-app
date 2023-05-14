@@ -4,6 +4,10 @@
 .add-note-form{
     margin: 1rem ;
 }
-.description textarea, .description label{
+.description label{
     font-size: 1.6rem;
+}
+.description textarea{
+    font-size: 1.6rem;
+    border: 1px solid black;
 }

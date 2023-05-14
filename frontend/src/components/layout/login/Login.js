@@ -45,7 +45,7 @@ const Login = (props) => {
     }, 5000)
   };
   return (
-    <Modal className={classes.login}>
+    <Modal className={classes.login} onClick={props.closeLoginFormHandler}>
         <ImCancelCircle onClick={props.closeLoginFormHandler} className={classes['close-login-form']} />
         <h3 className={classes['login-form-heading']}>Please login here</h3>
         {!message && fieldError && <p className='fieldError'>{fieldError}</p>}
