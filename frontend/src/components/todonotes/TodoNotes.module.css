@@ -1,0 +1,35 @@
+.notes_title{
+    font-size: 2rem;
+}
+.notes_category{
+    font-size: 1.3rem;
+}
+
+.notes_description{
+    font-size: 1.6rem;
+}
+.notes_view{
+    font-size: 1.6rem;
+    background: rgb(80, 157, 80);
+    width: 100%;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: .5rem 0rem;
+    text-decoration: none;
+    margin: .5rem 0rem;
+}
+.notes_view:hover{
+    background: green;
+    color: white;
+
+}
+
+.notes-action{
+    display: flex;
+    justify-content: space-between;
+}
+.notes-edit, .notes-delete{
+    width: 40%;
+    font-size: 1.7rem;
+}

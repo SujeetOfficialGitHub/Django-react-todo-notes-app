@@ -1,0 +1,9 @@
+.container{
+    margin-top: 6rem;
+}
+.add-note-form{
+    margin: 1rem ;
+}
+.description textarea, .description label{
+    font-size: 1.6rem;
+}

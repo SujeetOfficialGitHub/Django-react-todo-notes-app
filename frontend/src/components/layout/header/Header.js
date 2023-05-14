@@ -30,7 +30,7 @@ const Header = (props) => {
         </form>
         <nav className={`${classes.nav} ${openNav ? classes['nav-toggle'] : ''}`}>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
+            {isLoggedIn && <NavLink to="/add-view-notes">Add&View</NavLink>}
             <NavLink to="/contact">Contact</NavLink>
             {!isLoggedIn && <button onClick={props.openLoginFormHandler}>Login</button>}
             {!isLoggedIn && <button onClick={props.openSignupFormHandler}>Signup</button>}
