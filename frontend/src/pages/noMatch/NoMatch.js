@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './NoMatch.css'
 const NoMatch = () => {
   return (
-    <div className='mt-5 pt-5'>Page Not Found</div>
+    <div className='no-match'>Page Not Found</div>
   )
 }
 

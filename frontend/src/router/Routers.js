@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/home/Home';
-import Contact from '../pages/contact/Contact'
 import NoMatch from '../pages/noMatch/NoMatch';
 import { useSelector } from 'react-redux';
 import AddViewNotes from '../pages/add&viewnotes/AddViewNotes';
@@ -13,7 +12,6 @@ const Routers = () => {
         <Route path='/' element={<Home/>} />
         <Route path='/add-view-notes' element={isLoggedIn ? <AddViewNotes/> : <Home/>} />
         <Route path='/add-view-notes/:slug' element={isLoggedIn ? <SingleTodoNote/> : <Home/>} />
-        <Route path='/contact' element={<Contact/>} />
         <Route path='*' element={<NoMatch/>} />
     </Routes>
   )

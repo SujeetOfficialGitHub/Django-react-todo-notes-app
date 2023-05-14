@@ -5,9 +5,11 @@ import {AiOutlineMenu} from 'react-icons/ai'
 import {ImCancelCircle} from 'react-icons/im'
 import { useDispatch, useSelector } from 'react-redux'
 import { AuthActions } from '../../../app/features/authSlice'
+import { searchActions } from '../../../app/features/searchSlice'
 
 const Header = (props) => {
     const [openNav, setOpenNav] = useState(false)
+    const [searchByTitle, setSearchByTitle] = useState('')
 
     const isLoggedIn = useSelector(state => state.auth.token);
 
@@ -22,16 +24,21 @@ const Header = (props) => {
     const logoutHandler = () => {
         dispatch(AuthActions.logout())
     }
+    const searchTitleHandler = (e) => {
+        setSearchByTitle(e.target.value)
+        dispatch(searchActions.searchByTitle(e.target.value))
+    }
   return (
     <header className={classes.header}>
         <Link to="/" className={classes.logo}>TODONotes</Link>
+
         <form className={classes['search-form']}>
-            <input type="search" name="" id="" placeholder='Search here...' />
+            <input type="search" value={searchByTitle} onChange={searchTitleHandler} placeholder='Search title here...' />
         </form>
+
         <nav className={`${classes.nav} ${openNav ? classes['nav-toggle'] : ''}`}>
             <NavLink to="/">Home</NavLink>
             {isLoggedIn && <NavLink to="/add-view-notes">Add&View</NavLink>}
-            <NavLink to="/contact">Contact</NavLink>
             {!isLoggedIn && <button onClick={props.openLoginFormHandler}>Login</button>}
             {!isLoggedIn && <button onClick={props.openSignupFormHandler}>Signup</button>}
             {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}

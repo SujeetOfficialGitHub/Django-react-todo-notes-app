@@ -13,15 +13,21 @@ const TodoNotes = ({onPopulateDataToForm}) => {
     }, [dispatch, token])
 
     const {todoNotesList, loading} = useSelector(state => state.todoNotes)
-
+    const searchTitle = useSelector(state => state.searchTitle)
 
     return (
     <ContainerBox>
         <Row>
         {loading && <h1 className='text-center'>Loading...</h1>}
         <h1 className='text-center bg-secondary text-light p-2 mt-5'>Notes List</h1>
-        {!loading && todoNotesList && todoNotesList.map((item) => (
-            <TodoNote key={item.id} item={item} onPopulateDataToForm={onPopulateDataToForm} />
+        {!loading && todoNotesList && todoNotesList
+            .filter(item => item.title.toLowerCase().includes(searchTitle.title))
+            .map((item) => (
+                <TodoNote 
+                    key={item.id} 
+                    item={item} 
+                    onPopulateDataToForm={onPopulateDataToForm} 
+                />
         ))}
     </Row>
     </ContainerBox>
