@@ -14,6 +14,20 @@ export const allTodoNotes = createAsyncThunk('todoNotes/allTodoNotes', async({to
         console.log(error)
     }
 } )
+// Get Single Todo notes 
+export const singleTodoNote = createAsyncThunk('todoNotes/singleTodoNote', async({token, slug}) => {
+    try{
+        const res = await axios.get(`/api/todonotes/${slug}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return res.data
+    }catch(error){
+        console.log(error)
+    }
+} )
 
 // Post request
 export const addTodoNotes = createAsyncThunk('todoNotes/addTodoNotes', async({token, enteredData}, {rejectWithValue}) => {
@@ -128,6 +142,19 @@ const TodoNotesSlice = createSlice({
 
             })
             .addCase(updateTodoNote.rejected, (state, action) => {
+                state.loading = false;
+                console.log(action)
+            })
+
+            // single todo notes 
+            .addCase(singleTodoNote.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(singleTodoNote.fulfilled, (state, action) => {
+                state.loading = false;
+                
+            })
+            .addCase(singleTodoNote.rejected, (state, action) => {
                 state.loading = false;
                 console.log(action)
             })

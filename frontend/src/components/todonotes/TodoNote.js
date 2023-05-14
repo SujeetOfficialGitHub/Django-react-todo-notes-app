@@ -4,7 +4,7 @@ import {FaTrash} from 'react-icons/fa';
 import { Card, Col } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import ButtonBox from '..//../components/ui/buttonBox/ButtonBox';
-
+import { Link } from 'react-router-dom';
 import classes from './TodoNote.module.css'
 import { deleteTodoNote } from '../../app/features/todoNotesSlice';
 
@@ -29,7 +29,7 @@ const TodoNote = ({item, onPopulateDataToForm}) => {
                     <Card.Text className={classes['notes_description']}>
                         {item.description && item.description.length>100 ? item.description.substring(0, 100)+"..." : item.description}
                     </Card.Text>
-                    <Card.Link href="#" className={classes['notes_view']}>View</Card.Link>
+                    <Link to={`/add-view-notes/${item.slug}`} className={classes['notes_view']}>View</Link>
                     <div className={classes['notes-action']}>
                         <ButtonBox 
                             type="button"
